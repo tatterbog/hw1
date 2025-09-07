@@ -1,0 +1,28 @@
+#include <iostream>
+
+template<typename T>
+void mySwap(T& a, T& b) {
+    T tmp = std::move(a);
+    a = std::move(b);
+    b = std::move(tmp);
+}
+
+template<typename T>
+void printElement(const T& elem1, const T& elem2) {
+    std::cout << elem1 << " " << elem2 << std::endl;
+}
+
+int main() {
+    int x1 = 1, y1 = 2;
+    double x2 = 3.4, y2 = 4.3;
+    std::string x3 = "++", y3 = "C";
+    mySwap(x1, y1);
+    mySwap(x2, y2);
+    mySwap(x3, y3);
+    
+    printElement(x1, y1);
+    printElement(x2, y2);
+    printElement(x3, y3);
+    
+    return 0;
+}

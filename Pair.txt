@@ -9,7 +9,7 @@ class Pair{
     public:
         Pair(T1 x, T2 y) : el1(x), el2(y) {}
 
-        void print(){
+        void print() const{
             std::cout << el1 << ' ' << el2 << '\n'; 
         }
 };
@@ -24,3 +24,4 @@ int main(){
     p3.print();
 
 }
+

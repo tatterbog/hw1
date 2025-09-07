@@ -15,11 +15,12 @@ class Pair{
 };
 
 int main(){
-    Pair p1(1, 2);
-    Pair p2(3.8, 5);
-    Pair p3("string", 12);
+    Pair<int, int> p1(1, 2);
+    Pair<double, int> p2(3.8, 5);
+    Pair<std::string, int> p3("string", 12);
 
     p1.print();
     p2.print();
     p3.print();
+
 }

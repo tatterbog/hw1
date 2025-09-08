@@ -1,0 +1,111 @@
+#include <iostream>
+
+template <typename T> 
+class Matrix{
+    private:
+        T** arr = nullptr;
+        int N, M;
+        
+    public:
+        Matrix(int N = 0, int M = 0) : N(N), M(M){
+            arr = new T*[N];
+            for(int i = 0; i < N; i++){
+                arr[i] = new T[M]{};
+            }
+        }
+        
+        Matrix(const Matrix& other) : N(other.N), M(other.M) {
+            arr = new T*[N];
+            for (int i = 0; i < N; i++) {
+                arr[i] = new T[M]{};
+                for (int j = 0; j < M; j++){
+                    arr[i][j] = other.arr[i][j];
+                }
+            }
+        }
+        
+        Matrix(Matrix&& other) : arr(other.arr), N(other.N), M(other.M) {
+            other.arr = nullptr;  
+            other.N = 0;
+            other.M = 0;
+        }
+        
+        void set(int row, int col, const T& value){
+            if (row >= N || row < 0 || col >= M || col < 0){
+                throw std::out_of_range("Error: Out of range");
+            }
+            arr[row][col] = value;
+            
+        }
+        
+        T get(int row, int col) const{
+            if (row >= N || row < 0 || col >= M || col < 0){
+                throw std::out_of_range("Error: Out of range");
+            } 
+            return arr[row][col];
+        }
+        
+        void print() const {
+            for (int i = 0; i < N; i++) {
+                for(int j = 0; j < M; j++){
+                    std::cout << arr[i][j] << ' ';
+                }
+                std::cout << '\n';
+            }
+            std::cout << '\n';
+        }
+        
+        Matrix operator+(const Matrix& other){
+            if(other.N != N || other.M != M){
+                return Matrix(0,0);
+            }
+            
+            Matrix<T> res(N, M);
+            for (int i = 0; i < N; i++) {
+                for(int j = 0; j < M; j++){
+                    res.arr[i][j] = arr[i][j] + other.arr[i][j];
+                }
+            }
+            return res;
+        }
+        
+        ~Matrix(){
+            for(int i = 0; i < N; i++){
+                delete[] arr[i];
+            }
+            delete[] arr;
+        }
+};
+
+int main(){
+    try {
+        Matrix<int> m1(2, 3);
+        Matrix<int> m2(2, 3);
+        
+        for (int i = 0; i < 2; i++) {
+            for(int j = 0; j < 3; j++){
+                m1.set(i, j, i + j);
+                m2.set(i, j, i + j);
+            }
+        }
+        
+        m1.print();
+        m2.print();
+        Matrix<int> m3 = m1 + m2;
+        m3.print(); 
+        
+        Matrix<std::string> m4(1, 1); 
+        Matrix<std::string> m5(1, 1); 
+        m4.set(0, 0, "wwqe");
+        m5.set(0, 0, "qwya");
+        
+        Matrix<std::string> m6 = m4 + m5;
+        m6.print(); 
+        
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    } catch(...){
+        std::cerr << "idk" << '\n';
+    }
+
+}

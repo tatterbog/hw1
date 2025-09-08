@@ -24,7 +24,7 @@ class FixedArray{
             return arr[index];
         }
         
-        size_t size() const{
+        int size() const{
             return N;
         }
         
@@ -65,3 +65,4 @@ int main(){
 
 
 }
+

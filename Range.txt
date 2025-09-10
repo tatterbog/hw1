@@ -1,0 +1,36 @@
+#include <iostream>
+
+template<typename T>
+class Range{
+    private:
+        T start;
+        T end;
+    
+    public:
+        Range(const T& s,const T& e) : start(s), end(e){}
+        
+        bool contains(const T& value){
+            return value <= end && value >= start;
+        }
+        
+        int length(){
+            return end - start;
+        }
+        
+        void print(){
+            std::cout << "[" << start << ", " << end << "]\n";
+        }
+};
+
+int main()
+{
+    Range<int> r1(3, 10);
+    Range<double> r2(3.1, 10.1);
+    Range<char> r3('a', 'f');
+    
+    std::cout << std::boolalpha << r1.contains(5) << "\n";;
+    std::cout << r2.length() << "\n";;
+    r3.print();
+
+    return 0;
+}

@@ -1,26 +1,22 @@
 #include <iostream>
-#include <type_traits>
 
 template<typename T>
 bool pred(const T& t) {
-    if constexpr (std::is_same_v<T, std::string>){
-        return t.size() > 2;
-    }
-    else{
-        return t > 2;
-    }
+    return t > 2;
 }
 
-
-
+template<>
+bool pred(const std::string& t) {
+    return t.length() > 2;
+}
 
 template<typename T, typename P>
 void filter(T* arr, int* size,P pred) {
     int j = 0;
     for (int i = 0; i < *size; i++) {
-    if (pred(arr[i])) {
-        arr[j] = arr[i];
-        j++;
+        if (pred(arr[i])) {
+            arr[j] = arr[i];
+            j++;
         }
     }
     *size = j;
@@ -33,8 +29,6 @@ void print(T* arr, int size){
     }
     std::cout << '\n';
 }
-
- 
 
 int main() {
     int size1 = 4, size2 = 3, size3 = 4;

@@ -1,17 +1,17 @@
 #include <iostream>
 
 template<typename T>
-void printElement(const T elem) {
+void printElement(const T elem) const{
     std::cout << elem << '\n';
 }
 
 template<>
-void printElement(bool elem) {
+void printElement(bool elem) const{
     std::cout << std::boolalpha << elem << '\n';
 }
 
 template<>
-void printElement(const char* elem) {
+void printElement(const char* elem) const{
     std::cout << '"' << elem << '"' << '\n';
 }
 
@@ -20,4 +20,5 @@ int main() {
     printElement<double>(10.2);
     printElement<const char *>("CPP");
     return 0;
+
 }

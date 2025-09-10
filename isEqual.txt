@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cstring>
+
+template<typename T>
+bool isEqual(const T elem1, const T elem2) {
+    return elem1 == elem2;
+}
+
+template<>
+bool isEqual(const char* elem1, const char* elem2) {
+    return !strcmp(elem1, elem2);
+}
+
+
+int main() {
+    
+    std::cout << std::boolalpha << 
+    isEqual<const char *>("rau", "rau") << '\n';
+    
+    std::cout << std::boolalpha <<
+    isEqual<const char *>("no", "yes") << '\n';
+    
+    std::cout << std::boolalpha << 
+    isEqual<double>(0.7, 0.7) << '\n';
+    return 0;
+}

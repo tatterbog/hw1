@@ -1,0 +1,13 @@
+#include <iostream>
+
+template<typename T>
+void printElement(const T& elem) {
+    std::cout << elem << '\n';
+}
+
+int main() {
+    printElement<int>(10);
+    printElement<double>(10.2);
+    printElement<std::string>("CPP");
+    return 0;
+}

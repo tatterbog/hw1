@@ -1,12 +1,12 @@
 #include <iostream>
 
 template<typename T>
-void foo(T &l_value) {
+void foo(T &l_value){
     std::cout << l_value << " [lvalue]" << '\n';
 }
 
 template<typename T>
-void foo(T &&r_value) {
+void foo(T &&r_value){
     std::cout << r_value << " [rvalue]" << '\n';
 }
 
@@ -15,7 +15,7 @@ void betterPrint(){
 }
 
 template<typename T, typename... Rest>
-void betterPrint(T&& first, Rest&&... rest) {
+void betterPrint(T&& first, Rest&&... rest){
     foo(std::forward<T>(first));
     betterPrint(std::forward<Rest>(rest)...);
 }

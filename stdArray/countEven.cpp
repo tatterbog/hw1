@@ -5,8 +5,7 @@ template<int N>
 
 int countEven(const std::array<int, N>& arr){
     int even = 0;
-    int len = arr.size();
-    for(int i = 0; i < len; i++){
+    for(int i = 0; i < N; i++){
         if(!(arr[i] & 1)){
             even++;
         }

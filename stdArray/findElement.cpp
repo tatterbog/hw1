@@ -1,10 +1,9 @@
 #include <iostream>
 #include <array>
 
-
 template<typename T, int N>
-int findElement(const std::array<T, N> arr, const T& t){
-    for(int i = 0; i < arr.size(); i++){
+int findElement(const std::array<T, N>& arr, const T& t){
+    for(int i = 0; i < N; i++){
         if(arr[i] == t){
             return i;
         }

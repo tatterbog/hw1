@@ -4,7 +4,8 @@
 template<int N>
 auto countFrequency(const std::array<char, N>& arr) {
     std::array<int, 256> fr = {};
-
+    std::fill(fr.begin(), fr.end(), 0);
+    
     for (int i = 0; i < N; i++) {
         fr[arr[i] - '\0']++;
     }

@@ -1,0 +1,68 @@
+#include <iostream>
+
+template <typename T, int N = 0> 
+class FixedArray{
+    private:
+        T* arr = nullptr;
+
+    public:
+        FixedArray(){
+            arr = new T[N]{};
+        }
+
+        void set(int index, const T& value){
+            if(index < 0 || index >= N){
+               throw std::out_of_range("Out of range");
+            }
+            arr[index] = value;
+        }
+        
+        T get(int index) const{
+            if(index < 0 || index >= N){
+               throw std::out_of_range("Out of range");
+            }
+            return arr[index];
+        }
+        
+        int size() const{
+            return N;
+        }
+        
+        void print() const {
+            for (int i = 0; i < N; i++) {
+                std::cout << arr[i] << ' ';
+            }
+            std::cout << '\n';
+        }
+        
+        ~FixedArray(){
+            delete[] arr;
+        }
+};
+
+int main(){
+    try {
+        FixedArray<int, 4> arr1;
+        for (std::size_t i = 0; i < arr1.size(); i++) {
+            arr1.set(i, i + 1);
+        }
+        arr1.print();
+
+        FixedArray<std::string, 3> arr2;
+        arr2.set(0, "awufe");
+        arr2.set(1, "fwhau");
+        arr2.set(2, "swkq");
+        arr2.print();
+
+
+        arr2.set(5, "oops"); 
+    
+    } catch (const std::out_of_range& e) {
+        std::cerr << e.what() << "\n";
+    } catch (...) {
+        std::cerr << "Something went wrong idk\n";
+    }
+
+
+}
+

@@ -142,7 +142,7 @@ public:
 Node* parse(const std::string& expr){
     std::stack<OperationNode*> ops;
     std::stack<std::vector<Node*>> nodes;
-    std::string token;
+    std::string StrAdder;
 
     for (size_t i = 0; i < expr.size(); i++) {
         char c = expr[i];
@@ -152,23 +152,23 @@ Node* parse(const std::string& expr){
         }
 
         if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-            token = "";
+            StrAdder = "";
             while (i < expr.size() && ((expr[i] >= 'A' && expr[i] <= 'Z') 
                 || (expr[i] >= 'a' && expr[i] <= 'z') || (expr[i] >= '0' && expr[i] <= '9'))){
-                token += expr[i];
+                StrAdder += expr[i];
                 i++;
             }
             i--; 
 
             if (i + 1 < expr.size() && expr[i + 1] == '(') {
-                ops.push(new OperationNode(token));
+                ops.push(new OperationNode(StrAdder));
                 nodes.push({});
             } 
             else {
                 if (nodes.empty()){
                     throw std::invalid_argument("Variable outside function yee yee");
                 }
-                nodes.top().push_back(new VariableNode(token));
+                nodes.top().push_back(new VariableNode(StrAdder));
             }
         }
 

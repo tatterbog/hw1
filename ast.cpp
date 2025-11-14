@@ -216,7 +216,7 @@ Node* parse(const std::string& expr){
         }
 
         else{
-            throw std::invalid_argument(std::string("Unexpected character: ") + c);
+            throw std::invalid_argument("Yee yee ahh character");
         }
     }
 

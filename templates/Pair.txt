@@ -1,0 +1,48 @@
+#include <iostream>
+
+template <typename T1, typename T2> 
+class Pair{
+    private:
+        T1 el1;
+        T2 el2;
+
+    public:
+        Pair(T1 x, T2 y) : el1(x), el2(y) {}
+
+        T1 first() const{
+            return el1;
+        }   
+    
+        T2 second() const{
+            return el2;
+        }
+        
+        void setFirst(const T1& val){
+            el1 = val;
+        }
+        
+        void setSecond(const T2& val){
+            el2 = val;
+        }
+        
+        void print() const{
+            std::cout << el1 << ' ' << el2 << '\n'; 
+        }
+};
+
+int main(){
+    Pair<int, int> p1(1, 2);
+    Pair<double, int> p2(3.8, 5);
+    Pair<std::string, int> p3("string", 12);
+
+    p1.setSecond(6);
+    p3.setFirst("qwjdib");
+    
+    p1.print();
+    p2.print();
+    p3.print();
+
+}
+
+
+

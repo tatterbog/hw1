@@ -9,7 +9,7 @@ int main() {
     std::cin >> x >> n;
 
     std::set<int> trafs = {0, x};
-    std::set<int> holes = {x};
+    std::multiset<int> holes = {x};
 
     for (int i = 0; i < n; i++) {
         int p;
